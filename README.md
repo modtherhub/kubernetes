@@ -95,10 +95,28 @@ minikube version
 
 ---
 
-## ☸️ Step 5: Install kubectl
+## ☸️ Step 5: Install kubectl (Optional)
+
+> Minikube installs and manages Kubernetes internally.
+> kubectl is only needed to interact with the cluster manually.
+
+### Option 1: Use kubectl via Minikube (no installation)
 
 ```bash
-sudo apt install -y kubectl
+minikube kubectl -- get nodes
+```
+
+### Option 2: Install kubectl manually (recommended)
+
+```bash
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+```
+
+### Verify
+
+```bash
+kubectl version --client
 ```
 
 ---
@@ -177,6 +195,8 @@ docker ps
 
 ## 🧠 Notes
 
+* Minikube installs Kubernetes automatically
+* kubectl is only a CLI tool to interact with the cluster
 * Minikube is running using Docker, not VirtualBox
 * WSL does not support VirtualBox as a driver
 * This setup is lightweight and recommended for development
